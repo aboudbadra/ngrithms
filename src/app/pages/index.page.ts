@@ -37,13 +37,15 @@ export const routeMeta: RouteMeta = {
             <a routerLink="/cookie-consent" class="lib-card">
               <div class="lib-name">&#64;ngrithms/cookie-consent</div>
               <div class="lib-desc">Modern cookie-consent banner with Google Consent Mode v2.</div>
-              <div class="lib-status">v0.4 &middot; approaching 1.0</div>
+              <div class="lib-status">v0.5 &middot; live demo available</div>
             </a>
           </li>
-          <li class="lib-card lib-card--soon">
-            <div class="lib-name">&#64;ngrithms/idle</div>
-            <div class="lib-desc">Signal-first user-inactivity detector.</div>
-            <div class="lib-status">in development</div>
+          <li>
+            <a routerLink="/idle" class="lib-card">
+              <div class="lib-name">&#64;ngrithms/idle</div>
+              <div class="lib-desc">Signal-first user-inactivity detector with multi-tab sync.</div>
+              <div class="lib-status">v0.4 &middot; live demo available</div>
+            </a>
           </li>
         </ul>
         <p class="more-soon">More on the way: <code>&#64;ngrithms/confirm</code>, <code>&#64;ngrithms/scroll-reveal</code>, <code>&#64;ngrithms/clipboard-toast</code>, <code>&#64;ngrithms/form-errors</code>, <code>&#64;ngrithms/storage</code>.</p>

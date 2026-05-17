@@ -1,3 +1,5 @@
+@import '@ngrithms/cookie-consent/themes/default.css';
+
 :root {
   --ngr-bg: #ffffff;
   --ngr-fg: #111111;

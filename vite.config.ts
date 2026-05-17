@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => ({
     analog({
       static: true,
       prerender: {
-        routes: ['/', '/cookie-consent'],
+        routes: ['/', '/cookie-consent', '/idle', '/privacy'],
       },
     }),
   ],

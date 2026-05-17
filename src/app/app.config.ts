@@ -19,6 +19,7 @@ import {
   META_PIXEL,
   YOUTUBE,
 } from '@ngrithms/cookie-consent';
+import { provideIdle } from '@ngrithms/idle';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -55,6 +56,15 @@ export const appConfig: ApplicationConfig = {
           items: [YOUTUBE],
         }),
       ],
+    }),
+    // Short demo timings so visitors don't wait around to see the state shift.
+    // Real apps typically use idleAfter: 5 min, timeout: 30 s.
+    provideIdle({
+      idleAfter: 5_000,
+      timeout: 10_000,
+      pauseWhenHidden: true,
+      multiTabSync: true,
+      autoStart: true,
     }),
   ],
 };
