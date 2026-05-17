@@ -1,26 +1,34 @@
-# site
+# ngrithms
 
-This project was generated with [Analog](https://analogjs.org), the fullstack meta-framework for Angular.
+Umbrella site for the [@ngrithms](https://www.npmjs.com/org/ngrithms) family of Angular libraries — landing page, per-library demos, and docs.
 
-## Setup
+Built with [Analog](https://analogjs.org) (file-based routing, prerendered to static HTML), deployed to Cloudflare Pages.
 
-Run `npm install` to install the application dependencies.
+## Local development
 
-## Development
-
-Run `npm start` for a dev server. Navigate to `http://localhost:5173/`. The application automatically reloads if you change any of the source files.
+```bash
+npm install
+npm run dev    # http://localhost:5173
+```
 
 ## Build
 
-Run `npm run build` to build the client/server project. The client build artifacts are located in the `dist/analog/public` directory. The server for the API build artifacts are located in the `dist/analog/server` directory.
+```bash
+npm run build   # output: dist/analog/public  (fully static, ready for Cloudflare Pages)
+```
 
-## Test
+## Adding a library page
 
-Run `npm run test` to run unit tests with [Vitest](https://vitest.dev).
+1. Create `src/app/pages/<lib-name>.page.ts` (file name = route path).
+2. Add the route to the `prerender.routes` array in `vite.config.ts` so it ships in the static build.
+3. Add a card linking to it on the home page (`src/app/pages/index.page.ts`).
 
-## Community
+## Cloudflare Pages settings
 
-- Visit and Star the [GitHub Repo](https://github.com/analogjs/analog)
-- Join the [Discord](https://chat.analogjs.org)
-- Follow us on [Twitter](https://twitter.com/analogjs)
-- Become a [Sponsor](https://github.com/sponsors/brandonroberts)
+- Build command: `npm run build`
+- Build output directory: `dist/analog/public`
+- Node version: `22` (set `NODE_VERSION=22` as an environment variable)
+
+## License
+
+MIT

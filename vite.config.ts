@@ -3,7 +3,6 @@
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   build: {
     target: ['es2020'],
@@ -12,7 +11,12 @@ export default defineConfig(({ mode }) => ({
     mainFields: ['module'],
   },
   plugins: [
-    analog(),
+    analog({
+      static: true,
+      prerender: {
+        routes: ['/', '/cookie-consent'],
+      },
+    }),
   ],
   test: {
     globals: true,
