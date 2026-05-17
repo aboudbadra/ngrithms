@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { type RouteMeta } from '@analogjs/router';
+
+export const routeMeta: RouteMeta = {
+  title: '@ngrithms — Modern Angular utilities',
+  meta: [
+    { name: 'description', content: 'A family of small, focused Angular libraries. Standalone, signal-first, SSR-safe, zero runtime dependencies.' },
+  ],
+};
 
 @Component({
   selector: 'app-home',

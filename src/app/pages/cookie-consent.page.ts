@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { type RouteMeta } from '@analogjs/router';
+
+export const routeMeta: RouteMeta = {
+  title: '@ngrithms/cookie-consent — Modern Angular cookie consent',
+  meta: [
+    { name: 'description', content: 'Standalone Angular cookie consent with Google Consent Mode v2. Signal-first, SSR-safe, zero runtime dependencies.' },
+  ],
+};
 
 @Component({
   selector: 'app-cookie-consent',
