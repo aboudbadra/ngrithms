@@ -9,10 +9,13 @@
     "ng": "ng",
     "dev": "vite",
     "start": "npm run dev",
-    "build": "vite build",
+    "prebuild": "node scripts/fetch-releases.mjs",
+    "build": "vite build && node scripts/build-sitemap.mjs",
     "watch": "vite build --watch",
     "test": "vitest",
-    "preview": "node dist/analog/server/index.mjs"
+    "preview": "node dist/analog/server/index.mjs",
+    "sync-versions": "node scripts/sync-lib-versions.mjs",
+    "fetch-releases": "node scripts/fetch-releases.mjs"
   },
   "private": true,
   "dependencies": {
@@ -27,7 +30,8 @@
     "@angular/platform-server": "^20.0.0",
     "@angular/router": "^20.0.0",
     "@ngrithms/cookie-consent": "^0.6.0",
-    "@ngrithms/idle": "^0.4.0",
+    "@ngrithms/hotkeys": "^0.1.0",
+    "@ngrithms/idle": "^0.4.1",
     "front-matter": "^4.0.2",
     "marked": "^15.0.7",
     "marked-gfm-heading-id": "^4.1.1",

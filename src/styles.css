@@ -1,5 +1,9 @@
 @import '@ngrithms/cookie-consent/themes/default.css';
 
+/* -------------------------------------------------------------------------- */
+/* Design tokens                                                              */
+/* -------------------------------------------------------------------------- */
+
 :root {
   --ngr-bg: #ffffff;
   --ngr-fg: #111111;
@@ -36,4 +40,234 @@ code {
   background: var(--ngr-code-bg);
   padding: 0.1em 0.35em;
   border-radius: 4px;
+}
+
+kbd {
+  display: inline-block;
+  background: var(--ngr-code-bg);
+  border: 1px solid var(--ngr-border);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 1px 6px;
+  font: inherit;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  color: var(--ngr-fg);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Page-level typography (consumed by lib detail pages and privacy)           */
+/* -------------------------------------------------------------------------- */
+
+.page-title {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem;
+}
+
+.tagline {
+  color: var(--ngr-muted);
+  margin: 0 0 1rem;
+}
+
+.install code {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  background: var(--ngr-code-bg);
+  border-radius: 6px;
+}
+
+.intro {
+  margin: 1.5rem 0 0;
+  color: var(--ngr-muted);
+  line-height: 1.7;
+}
+
+.muted {
+  color: var(--ngr-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+.footnote {
+  color: var(--ngr-muted);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+.footnote a {
+  color: var(--ngr-accent);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Section layout primitives                                                  */
+/* -------------------------------------------------------------------------- */
+
+.section {
+  margin-top: 3rem;
+}
+
+.section > h2 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ngr-muted);
+  margin: 0 0 0.75rem;
+}
+
+.section > h2 code {
+  font-size: 0.85em;
+}
+
+.section-intro {
+  color: var(--ngr-muted);
+  margin: 0 0 1rem;
+  line-height: 1.6;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Buttons                                                                    */
+/* -------------------------------------------------------------------------- */
+
+.btn {
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--ngr-border);
+  background: transparent;
+  color: var(--ngr-fg);
+  border-radius: 6px;
+  font: inherit;
+  cursor: pointer;
+  transition: opacity 150ms ease;
+}
+
+.btn:hover:not([disabled]) {
+  border-color: var(--ngr-accent);
+}
+
+.btn[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: var(--ngr-accent);
+  border-color: var(--ngr-accent);
+  color: white;
+}
+
+.btn--primary:hover {
+  opacity: 0.92;
+}
+
+.btn--danger {
+  color: #c2410c;
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn--danger {
+    color: #fb923c;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Panels and code blocks                                                     */
+/* -------------------------------------------------------------------------- */
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.panel {
+  border: 1px solid var(--ngr-border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  background: var(--ngr-bg);
+}
+
+.panel h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+}
+
+.panel pre {
+  margin: 0;
+  padding: 0.75rem;
+  background: var(--ngr-code-bg);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  overflow: auto;
+  max-height: 14rem;
+}
+
+.code {
+  margin: 0;
+  padding: 1rem;
+  background: var(--ngr-code-bg);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  overflow: auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/* "Learn more" pill links                                                    */
+/* -------------------------------------------------------------------------- */
+
+.links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.links li {
+  display: contents;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--ngr-border);
+  border-radius: 999px;
+  color: var(--ngr-fg);
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1;
+  transition: border-color 120ms ease, color 120ms ease, background 120ms ease;
+}
+
+.pill:hover {
+  border-color: var(--ngr-accent);
+  color: var(--ngr-accent);
+  background: var(--ngr-code-bg);
+}
+
+.pill-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.pill-arrow {
+  width: 12px;
+  height: 12px;
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+
+.pill:hover .pill-arrow {
+  opacity: 1;
 }

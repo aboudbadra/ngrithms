@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { RouterLink } from '@angular/router';
 import { type RouteMeta } from '@analogjs/router';
 import {
   ConsentService,
@@ -8,11 +7,19 @@ import {
   consentToGoogleConsentObject,
   type GoogleConsentMapping,
 } from '@ngrithms/cookie-consent';
+import { getLibrary } from '../../data/libraries';
+import { SiteShellComponent } from '../shell/site-shell.component';
+
+const lib = getLibrary('cookie-consent');
 
 export const routeMeta: RouteMeta = {
   title: '@ngrithms/cookie-consent — Modern Angular cookie consent',
   meta: [
-    { name: 'description', content: 'Standalone Angular cookie consent with Google Consent Mode v2. Signal-first, SSR-safe, zero runtime dependencies.' },
+    {
+      name: 'description',
+      content:
+        'Standalone Angular cookie consent with Google Consent Mode v2. Signal-first, SSR-safe, zero runtime dependencies.',
+    },
   ],
 };
 
@@ -29,29 +36,20 @@ const GATE_KEYS = ['google_analytics', 'hotjar', 'meta_pixel', 'youtube'] as con
 
 @Component({
   selector: 'app-cookie-consent',
-  imports: [RouterLink, IfConsentDirective],
+  imports: [SiteShellComponent, IfConsentDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <header class="site-header">
-      <a routerLink="/" class="brand">&#64;ngrithms</a>
-      <nav>
-        <a routerLink="/">Home</a>
-        <a href="https://github.com/aboudbadra/ngrithms-cookie-consent" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.npmjs.com/package/@ngrithms/cookie-consent" target="_blank" rel="noopener">npm</a>
-      </nav>
-    </header>
-
-    <main>
-      <h1>&#64;ngrithms/cookie-consent</h1>
+    <app-site-shell [lib]="lib">
+      <h1 class="page-title">&#64;ngrithms/cookie-consent</h1>
       <p class="tagline">Modern Angular cookie consent &mdash; standalone, signal-first, SSR-safe, zero runtime deps.</p>
       <p class="install"><code>npm install &#64;ngrithms/cookie-consent</code></p>
 
       <p class="intro">
-        The banner at the bottom of the page and the floating badge in the corner are running &#64;ngrithms/cookie-consent v0.5 against this site.
+        The banner at the bottom of the page and the floating badge in the corner are running &#64;ngrithms/cookie-consent v{{ lib.version }} against this site.
         Try the banner first &mdash; then scroll down to see how the library lets you gate embeds, drive Google Consent Mode v2, and inspect state live.
       </p>
 
-      <section>
+      <section class="section">
         <h2>Conditional rendering with <code>*ngrIfConsent</code></h2>
         <p class="section-intro">
           The iframe below only mounts when you grant <code>youtube</code> consent (via the Social Media category).
@@ -82,7 +80,7 @@ const GATE_KEYS = ['google_analytics', 'hotjar', 'meta_pixel', 'youtube'] as con
         <pre class="code"><code>{{ embedSnippet }}</code></pre>
       </section>
 
-      <section>
+      <section class="section">
         <h2>Quick controls</h2>
         <div class="buttons">
           <button type="button" class="btn btn--primary" (click)="consent.acceptAll()">Accept all</button>
@@ -93,7 +91,7 @@ const GATE_KEYS = ['google_analytics', 'hotjar', 'meta_pixel', 'youtube'] as con
         </div>
       </section>
 
-      <section>
+      <section class="section">
         <h2>Inside the library</h2>
         <p class="section-intro">
           Two reactive views into what the library is doing &mdash; each paired with the setup
@@ -141,7 +139,7 @@ const GATE_KEYS = ['google_analytics', 'hotjar', 'meta_pixel', 'youtube'] as con
         </div>
       </section>
 
-      <section>
+      <section class="section">
         <h2>Reactive <code>*ngrIfConsent</code> gates</h2>
         <p class="section-intro">These flip live as you accept or reject individual cookie items.</p>
         <div class="panel gates">
@@ -157,52 +155,43 @@ const GATE_KEYS = ['google_analytics', 'hotjar', 'meta_pixel', 'youtube'] as con
         </div>
       </section>
 
-      <section>
+      <section class="section">
         <h2>Quick start</h2>
         <pre class="code"><code>{{ quickStart }}</code></pre>
         <p class="footnote">
-          See the <a href="https://github.com/aboudbadra/ngrithms-cookie-consent#readme" target="_blank" rel="noopener">full README</a> for theming, custom categories, headless mode, schema migration, and the <code>ScriptLoaderService</code> for SDK loading.
+          See the <a [href]="readmeHref" target="_blank" rel="noopener">full README</a> for theming, custom categories, headless mode, schema migration, and the <code>ScriptLoaderService</code> for SDK loading.
         </p>
       </section>
 
-      <section>
+      <section class="section">
         <h2>Learn more</h2>
         <ul class="links">
-          <li><a href="https://github.com/aboudbadra/ngrithms-cookie-consent" target="_blank" rel="noopener">README on GitHub</a></li>
-          <li><a href="https://www.npmjs.com/package/@ngrithms/cookie-consent" target="_blank" rel="noopener">Package on npm</a></li>
-          <li><a href="https://github.com/aboudbadra/ngrithms-cookie-consent/blob/master/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a></li>
+          <li>
+            <a class="pill" [href]="lib.github" target="_blank" rel="noopener">
+              <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              <span>GitHub</span>
+              <svg class="pill-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </a>
+          </li>
+          <li>
+            <a class="pill" [href]="npmHref" target="_blank" rel="noopener">
+              <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+              <span>npm</span>
+              <svg class="pill-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </a>
+          </li>
+          <li>
+            <a class="pill" [href]="changelogHref" target="_blank" rel="noopener">
+              <svg class="pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
+              <span>Changelog</span>
+              <svg class="pill-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </a>
+          </li>
         </ul>
       </section>
-    </main>
+    </app-site-shell>
   `,
   styles: `
-    :host { display: block; text-align: left; }
-    .site-header {
-      display: flex; justify-content: space-between; align-items: center;
-      padding-bottom: 2rem; border-bottom: 1px solid var(--ngr-border);
-    }
-    .site-header .brand { font-weight: 600; font-size: 1.1rem; color: var(--ngr-fg); text-decoration: none; }
-    .site-header nav { display: flex; gap: 1.5rem; }
-    .site-header nav a { color: var(--ngr-muted); text-decoration: none; font-size: 0.95rem; }
-    .site-header nav a:hover { color: var(--ngr-fg); }
-
-    main { padding: 3rem 0 6rem; }
-    h1 { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 1.75rem; margin: 0 0 0.5rem; }
-    .tagline { color: var(--ngr-muted); margin: 0 0 1rem; }
-    .install code {
-      display: inline-block; padding: 0.5rem 0.75rem;
-      background: var(--ngr-code-bg); border-radius: 6px;
-    }
-    .intro { margin: 1.5rem 0 0; color: var(--ngr-muted); line-height: 1.7; }
-
-    section { margin-top: 3rem; }
-    section > h2 {
-      font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em;
-      color: var(--ngr-muted); margin: 0 0 0.75rem;
-    }
-    section > h2 code { font-size: 0.85em; }
-    .section-intro { color: var(--ngr-muted); margin: 0 0 1rem; line-height: 1.6; }
-
     .video-wrap {
       aspect-ratio: 16 / 9;
       border-radius: 8px;
@@ -223,22 +212,6 @@ const GATE_KEYS = ['google_analytics', 'hotjar', 'meta_pixel', 'youtube'] as con
     .video-blocked__title { margin: 0; font-weight: 600; }
     .video-blocked__msg { margin: 0; color: var(--ngr-muted); font-size: 0.9rem; }
     .video-blocked .btn { margin-top: 0.5rem; }
-
-    .buttons {
-      display: flex; flex-wrap: wrap; gap: 0.5rem;
-    }
-    .btn {
-      padding: 0.55rem 0.9rem; border: 1px solid var(--ngr-border);
-      background: transparent; color: var(--ngr-fg); border-radius: 6px;
-      font: inherit; cursor: pointer;
-    }
-    .btn:hover { border-color: var(--ngr-accent); }
-    .btn--primary { background: var(--ngr-accent); border-color: var(--ngr-accent); color: white; }
-    .btn--primary:hover { opacity: 0.92; }
-    .btn--danger { color: #c2410c; }
-    @media (prefers-color-scheme: dark) {
-      .btn--danger { color: #fb923c; }
-    }
 
     .subsection {
       border: 1px solid var(--ngr-border);
@@ -263,21 +236,6 @@ const GATE_KEYS = ['google_analytics', 'hotjar', 'meta_pixel', 'youtube'] as con
     .subsection .code { margin-bottom: 0; }
     .subsection .panel { margin-top: 0.5rem; }
 
-    .grid {
-      display: grid; gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-    .panel {
-      border: 1px solid var(--ngr-border); border-radius: 8px;
-      padding: 1.25rem; background: var(--ngr-bg);
-    }
-    .panel h3 { margin: 0 0 0.75rem; font-size: 0.9rem; }
-    .panel pre {
-      margin: 0; padding: 0.75rem;
-      background: var(--ngr-code-bg); border-radius: 6px;
-      font-size: 0.8rem; overflow: auto; max-height: 14rem;
-    }
-
     .gates { padding: 0.5rem 1.25rem; }
     .gate-row {
       display: flex; justify-content: space-between; align-items: center;
@@ -286,26 +244,22 @@ const GATE_KEYS = ['google_analytics', 'hotjar', 'meta_pixel', 'youtube'] as con
     }
     .gate-row:first-of-type { border-top: 0; }
     .gate-row code { background: transparent; padding: 0; }
-
-    .code {
-      margin: 0; padding: 1rem; background: var(--ngr-code-bg);
-      border-radius: 8px; font-size: 0.85rem; overflow: auto;
-    }
-    .footnote { color: var(--ngr-muted); font-size: 0.9rem; margin-top: 1rem; line-height: 1.6; }
-
-    .links { padding-left: 1.25rem; }
-    .links a { color: var(--ngr-accent); }
   `,
 })
 export default class CookieConsentPage {
   protected readonly consent = inject(ConsentService);
   private readonly sanitizer = inject(DomSanitizer);
 
+  protected readonly lib = lib;
   protected readonly gateKeys = GATE_KEYS;
   protected readonly youtubeEmbedUrl: SafeResourceUrl =
     this.sanitizer.bypassSecurityTrustResourceUrl(
       `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`,
     );
+
+  protected readonly npmHref = `https://www.npmjs.com/package/${lib.pkg}`;
+  protected readonly changelogHref = `${lib.github}/blob/master/CHANGELOG.md`;
+  protected readonly readmeHref = `${lib.github}#readme`;
 
   protected stateJson(): string {
     return JSON.stringify(this.consent.state(), null, 2) || 'null';

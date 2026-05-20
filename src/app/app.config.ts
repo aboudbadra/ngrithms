@@ -19,6 +19,7 @@ import {
   META_PIXEL,
   YOUTUBE,
 } from '@ngrithms/cookie-consent';
+import { provideHotkeys } from '@ngrithms/hotkeys';
 import { provideIdle } from '@ngrithms/idle';
 
 export const appConfig: ApplicationConfig = {
@@ -66,5 +67,6 @@ export const appConfig: ApplicationConfig = {
       multiTabSync: true,
       autoStart: true,
     }),
+    provideHotkeys(),
   ],
 };

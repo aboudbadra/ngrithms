@@ -1,0 +1,187 @@
+{
+  "fetchedAt": "2026-05-20T10:21:35.439Z",
+  "releases": {
+    "cookie-consent": [
+      {
+        "tag": "v0.6.0",
+        "name": "v0.6.0",
+        "publishedAt": "2026-05-17T14:07:39Z",
+        "url": "https://github.com/aboudbadra/ngrithms-cookie-consent/releases/tag/v0.6.0",
+        "prerelease": false,
+        "sections": {
+          "added": [
+            "Every `CookieItem` is now a named top-level export — pick exactly the tools you integrated (`GOOGLE_ANALYTICS`,",
+            "`makeCategory(...)` builder for hand-assembled categories with light validation: rejects the reserved `essential`"
+          ],
+          "changed": [
+            "Bundled presets are now sourced from the new top-level item exports — single source of truth, identical surface.",
+            "Library demo + READMEs lead with the new pattern."
+          ],
+          "fixed": [
+            "_(none — backward-compatible release)_"
+          ]
+        },
+        "notes": "Item-level exports + `makeCategory` helper for hand-assembled categories. Backward-compatible — every preset still\r\n  exists and is now sourced from the same item exports."
+      },
+      {
+        "tag": "v0.5.0",
+        "name": "",
+        "publishedAt": "2026-05-16T22:04:20Z",
+        "url": "https://github.com/aboudbadra/ngrithms-cookie-consent/releases/tag/v0.5.0",
+        "prerelease": false,
+        "sections": {
+          "added": [
+            "Real focus management on the modal: capture/return trigger, programmatic focus trap, Escape-to-close, inert",
+            "`aria-labelledby` + `aria-describedby` on the modal, `aria-expanded` / `aria-controls` on details toggles.",
+            "Disabled-checked checkboxes for essential items.",
+            "Themeable focus rings on every focusable surface via `--ngrithms-focus-ring`."
+          ],
+          "changed": [
+            "Banner is now a proper landmark (`role=\"region\"` + `aria-labelledby`) instead of a misconfigured dialog."
+          ]
+        },
+        "notes": "Accessibility pass — focus management, focus trap, ARIA semantics."
+      },
+      {
+        "tag": "v0.4.0",
+        "name": "",
+        "publishedAt": "2026-05-15T17:21:32Z",
+        "url": "https://github.com/aboudbadra/ngrithms-cookie-consent/releases/tag/v0.4.0",
+        "prerelease": false,
+        "sections": {
+          "added": [
+            "New CSS variables on the \"Customize\" (ghost) button: `--ngrithms-btn-ghost-bg`, `-border`, `-bg-hover`,",
+            "`--ngrithms-badge-icon-fill` CSS var (default: `currentColor`) for fine-grained badge icon coloring, independent",
+            "\"Recipes\" section in the lib README: hiding Reject-all (with GDPR caveat), outline-style Customize button,",
+            "Theming demo page gains a \"CSS variables reference\" section and two interactive recipes (\"Apply outline Customize"
+          ],
+          "changed": [
+            "Floating badge icon swapped to a properly-rendered detailed cookie SVG. The previous icon's chocolate-chip dots",
+            "Demo home Quick Start refreshed to match the modern Angular 17+ scaffold (4 files: `app.config.ts`,",
+            "Demo home gains a \"How it works\" section listing the four wiring patterns (structural directive / script loader /"
+          ],
+          "fixed": [
+            "Banner language switcher now reflects the active language when set programmatically. The `<select>` was using"
+          ]
+        },
+        "notes": "Ghost-button CSS vars, detailed cookie badge icon, language-switcher fix, demo refresh."
+      },
+      {
+        "tag": "v0.3.1",
+        "name": "",
+        "publishedAt": "2026-05-15T15:23:51Z",
+        "url": "https://github.com/aboudbadra/ngrithms-cookie-consent/releases/tag/v0.3.1",
+        "prerelease": false,
+        "sections": {
+          "changed": [
+            "README restructured around integration patterns. New \"How it works\" section with a four-pattern overview table",
+            "New \"Customizing text\" section documenting all 16 overridable translation keys (`banner.title`,",
+            "Large config reference table moved to the bottom; tutorial-style sections now lead."
+          ],
+          "fixed": [
+            "Quick start in the README now matches the modern Angular CLI scaffold (`ng new` on 17+): uses `app.config.ts` +"
+          ]
+        },
+        "notes": "Docs-only release: restructure README around integration patterns + document translation keys. No code changes."
+      },
+      {
+        "tag": "v0.3.0",
+        "name": "v0.3.0",
+        "publishedAt": "2026-05-15T13:49:19Z",
+        "url": "https://github.com/aboudbadra/ngrithms-cookie-consent/releases/tag/v0.3.0",
+        "prerelease": false,
+        "sections": {
+          "added": [
+            "`ConsentState.schemaVersion` field. `ConsentService.commit()` now stamps it on every write.",
+            "Optional `config.migrate(stored)` hook called when persisted-state `schemaVersion` doesn't match `config.schemaVersion`. Unblocks `CookieItem.key` renames without silently dropping users' decisions.",
+            "Library README gains full sections for `*ngrIfConsent` (incl. else template), `ScriptLoaderService` (config table + window-side-effects caveat), Google Consent Mode v2 recipe, and a `schemaVersion` migration walkthrough."
+          ],
+          "changed": [
+            "`ConsentService.loadPersisted()` rewritten to parse persisted data as `unknown`, reject non-objects safely, treat missing `schemaVersion` as `1` (back-compat with 0.1.x and 0.2.x cookies), and route schema mismatches through the optional `migrate` hook. Prompt-`version` re-prompts still win after a successful migrate.",
+            "Workspace README now links to the lib README as the canonical API surface and documents repository layout, dev commands, and release procedure."
+          ]
+        },
+        "notes": "Schema-version migration hook for safely renaming `CookieItem.key` values, plus an expanded API reference."
+      },
+      {
+        "tag": "v0.2.0",
+        "name": "",
+        "publishedAt": "2026-05-15T13:58:24Z",
+        "url": "https://github.com/aboudbadra/ngrithms-cookie-consent/releases/tag/v0.2.0",
+        "prerelease": false,
+        "sections": {
+          "added": [
+            "Initial unit test suite: 109 tests across 10 spec files covering the adapter, services, `*ngrIfConsent`",
+            "Test step added to the CI workflow."
+          ],
+          "changed": [
+            "`ScriptLoaderService` now removes the injected `<script>` element when consent for an item is revoked and"
+          ],
+          "fixed": [
+            "`ConsentService.item$()` now wraps `toObservable` in `runInInjectionContext` via a captured `Injector`, fixing"
+          ]
+        },
+        "notes": "Honor consent revocation in `ScriptLoaderService`; allow `item$()` outside injection context."
+      }
+    ],
+    "hotkeys": [
+      {
+        "tag": "v0.1.0",
+        "name": "",
+        "publishedAt": "2026-05-19T22:36:31Z",
+        "url": "https://github.com/aboudbadra/ngrithms-hotkeys/releases/tag/v0.1.0",
+        "prerelease": false,
+        "sections": {
+          "added": [
+            "Multi-combo per binding: `[hotkey]=\"['mod+s', 'mod+shift+s']\"`.",
+            "Dev-mode warnings for same-scope conflicts and OS-reserved combos.",
+            "`[searchable]` input on `<ngr-hotkey-cheatsheet>` and per-binding `hotkeyCategory` for cheatsheet sub-grouping.",
+            "`HotkeyTriggerEvent.combo` reports the specific combo that matched (matters for multi-combo bindings).",
+            "Config flags: `allowDuplicateBindings`, `allowReservedShortcuts`.",
+            "Demo app with 4-section layout: Features (/), Quick Start, API, Examples.",
+            "Features page hero with badge row (bundle, deps, version, …).",
+            "Examples page: 8 interactive sections, sticky stats panel, Preview/Code tabs."
+          ],
+          "fixed": [
+            "`parseStep` correctly handles `'shift++'` (the `+` key with Shift) using last-plus split.",
+            "`isEditableTarget` is now jsdom-safe via contenteditable attribute fallback."
+          ]
+        },
+        "notes": "First release. Signal-first keyboard shortcuts for Angular — auto-cleaning directives, modal scopes, multi-key\r\n  sequences, multi-combo bindings, and a searchable cheatsheet."
+      }
+    ],
+    "idle": [
+      {
+        "tag": "v0.4.1",
+        "name": "v0.4.1",
+        "publishedAt": "2026-05-19T11:08:44Z",
+        "url": "https://github.com/aboudbadra/ngrithms-idle/releases/tag/v0.4.1",
+        "prerelease": false,
+        "sections": {
+          "added": [
+            "Angular compatibility matrix workflow (17 → 21) that would have caught this earlier."
+          ],
+          "fixed": [
+            "`ng-packagr`'s auto-generated `.npmignore` strips `**/package.json` from the tarball, which removed the keepalive"
+          ]
+        },
+        "notes": "Fix `@ngrithms/idle/keepalive` resolution on Angular 17."
+      },
+      {
+        "tag": "v0.4.0",
+        "name": "v0.4.0",
+        "publishedAt": "2026-05-15T22:48:07Z",
+        "url": "https://github.com/aboudbadra/ngrithms-idle/releases/tag/v0.4.0",
+        "prerelease": false,
+        "sections": {
+          "added": [
+            "Configurable system-sleep behavior. `onSystemSleep: 'pause'` (in addition to the default `'timeout'`) shifts the",
+            "Library README rewritten end-to-end: positioning vs `@ng-idle/core`, install + peer range, quick start with",
+            "Workspace README now points at the lib README as the canonical surface and lists the secondary entry point in the"
+          ]
+        },
+        "notes": "System-sleep behavior is now configurable, and the README is the real documentation surface — a comprehensive\r\n  rewrite that npm-page visitors can actually use."
+      }
+    ]
+  }
+}
